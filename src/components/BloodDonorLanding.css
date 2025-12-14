@@ -1,0 +1,229 @@
+﻿/* src/components/BloodDonorLanding.css */
+.blood-donor-landing {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, rgba(13, 59, 100, 0.85) 0%, rgba(53, 86, 119, 0.80) 50%, rgba(184, 204, 208, 0.75));
+    position: relative;
+    overflow: hidden;
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Hover Effects */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .hover-lift:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+
+.benefit-card, .step-card {
+    transition: transform 0.3s ease;
+}
+
+    .benefit-card:hover, .step-card:hover {
+        transform: translateY(-5px);
+    }
+
+/* Emergency Alert */
+.emergency-alert {
+    background: linear-gradient(135deg, #0d3b64 0%, #355677 100%);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+    .emergency-alert::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #ff6b6b, #feca57, #ff6b6b);
+        animation: emergencyLine 3s infinite;
+    }
+
+@keyframes emergencyLine {
+    0% {
+        background-position: -200px 0;
+    }
+
+    100% {
+        background-position: 200px 0;
+    }
+}
+
+.alert-pulse {
+    animation: alertPulse 1.5s infinite;
+}
+
+@keyframes alertPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Final Call to Action */
+.final-hero-call {
+    background: linear-gradient(135deg, #b8ccd0 0%, #ffffff 50%, #b8ccd0 100%);
+    border: 3px solid #0d3b64;
+}
+
+.hero-sparkle {
+    animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.hero-btn {
+    background: linear-gradient(45deg, #e74c3c, #ff6b6b, #e74c3c);
+    border: none;
+    font-size: 1.5rem;
+    padding: 20px 40px;
+    min-width: 400px;
+    white-space: nowrap;
+    background-size: 200% auto;
+    transition: 0.5s;
+}
+
+    .hero-btn:hover {
+        background-position: right center;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
+    }
+
+/* Image Styling */
+.heart-container {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+    .image-container img {
+        transition: transform 0.3s ease;
+        width: 100%;
+        height: auto;
+    }
+
+        .image-container img:hover {
+            transform: scale(1.03);
+        }
+
+.donor-photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 4px solid #0d3b64;
+}
+
+.impact-image {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.impact-card:hover .impact-image {
+    transform: scale(1.05);
+}
+
+.impact-card {
+    transition: transform 0.3s ease;
+}
+
+    .impact-card:hover {
+        transform: translateY(-5px);
+    }
+
+/* Button Styling */
+.btn {
+    transition: all 0.3s ease !important;
+}
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-btn {
+        min-width: 300px;
+        font-size: 1.2rem;
+        padding: 15px 30px;
+    }
+
+    .display-4 {
+        font-size: 2.5rem;
+    }
+
+    .fs-3 {
+        font-size: 1.2rem;
+    }
+
+    .btn-lg {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-btn {
+        min-width: 250px;
+        font-size: 1rem;
+        padding: 12px 24px;
+    }
+
+    .d-flex.flex-wrap {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px !important;
+    }
+
+    .btn-lg {
+        width: 100%;
+        max-width: 300px;
+    }
+}

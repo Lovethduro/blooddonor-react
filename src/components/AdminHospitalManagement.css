@@ -1,0 +1,183 @@
+/* Admin Hospital Management Styles */
+.admin-hospital-management {
+    padding: 20px 0;
+}
+
+/* Stats Cards */
+.admin-hospital-management .card {
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.admin-hospital-management .card:hover {
+    transform: translateY(-2px);
+}
+
+/* Table Styles */
+.admin-hospital-management .table {
+    margin-bottom: 0;
+}
+
+.admin-hospital-management .table th {
+    border-top: none;
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1rem 0.75rem;
+}
+
+.admin-hospital-management .table td {
+    padding: 1rem 0.75rem;
+    vertical-align: middle;
+}
+
+.admin-hospital-management .table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Badge Styles */
+.admin-hospital-management .badge {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+}
+
+/* Button Group */
+.admin-hospital-management .btn-group .btn {
+    border-radius: 6px !important;
+    margin: 0 1px;
+}
+
+.admin-hospital-management .btn-group .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Modal Styles */
+.admin-hospital-management .modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.admin-hospital-management .modal-header {
+    border-bottom: 1px solid #e9ecef;
+    border-radius: 12px 12px 0 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.admin-hospital-management .modal-footer {
+    border-top: 1px solid #e9ecef;
+}
+
+/* Form Controls in Modal */
+.admin-hospital-management .modal .form-control {
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+}
+
+.admin-hospital-management .modal .form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+/* Alert Styles */
+.admin-hospital-management .alert {
+    border-radius: 8px;
+    border: none;
+}
+
+/* Search and Filter */
+.admin-hospital-management .form-control:focus,
+.admin-hospital-management .form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-hospital-management {
+        padding: 10px 0;
+    }
+
+    .admin-hospital-management .table-responsive {
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .admin-hospital-management .btn-group {
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .admin-hospital-management .btn-group .btn {
+        border-radius: 4px !important;
+        margin: 1px 0;
+    }
+
+    .admin-hospital-management .modal-dialog {
+        margin: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-hospital-management .table th,
+    .admin-hospital-management .table td {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.875rem;
+    }
+
+    .admin-hospital-management .badge {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+/* Status Indicators */
+.status-active {
+    color: #198754;
+    font-weight: 500;
+}
+
+.status-inactive {
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.status-verified {
+    color: #0dcaf0;
+    font-weight: 500;
+}
+
+.status-unverified {
+    color: #ffc107;
+    font-weight: 500;
+}
+
+/* Action Buttons */
+.action-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1;
+    border-radius: 4px;
+}
+
+.action-btn i {
+    font-size: 0.75rem;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}

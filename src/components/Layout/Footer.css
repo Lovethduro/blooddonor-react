@@ -1,0 +1,60 @@
+﻿/* src/components/Layout/Footer.css */
+.footer {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b3a4b 100%) !important;
+}
+
+.footer-brand h3 {
+    color: white;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-decoration: none;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    display: inline-block;
+}
+
+    .footer-link:hover {
+        color: #ff6b6b !important;
+        padding-left: 5px;
+    }
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+    .social-icon:hover {
+        transform: translateY(-3px);
+    }
+
+    .social-icon.facebook:hover {
+        background-color: #1877f2;
+    }
+
+    .social-icon.twitter:hover {
+        background-color: #1da1f2;
+    }
+
+    .social-icon.instagram:hover {
+        background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+    }
+
+    .social-icon.linkedin:hover {
+        background-color: #0077b5;
+    }

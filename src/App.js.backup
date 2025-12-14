@@ -1,0 +1,9 @@
+# Create the folder structure
+mkdir - p src / components / Layout
+
+# Create component files
+touch src / components / LandingPage.jsx
+touch src / components / Registration.jsx
+touch src / components / EmergencyRegister.jsx
+touch src / components / Layout / Header.jsx
+touch src / components / Layout / Footer.jsx

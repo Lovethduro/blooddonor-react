@@ -1,0 +1,323 @@
+﻿/* src/components/Registration.css */
+
+.registration-page {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #dc3545 0%, #9c1425 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.1;
+    }
+
+
+.registration-card {
+    border-radius: 20px;
+    border: none;
+}
+
+.card-header-wave {
+    background: linear-gradient(135deg, #dc3545 0%, #9c1425 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+    .card-header-wave::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        right: 0;
+        height: 20px;
+        background: white;
+        border-radius: 50% 50% 0 0;
+    }
+
+/* Progress Indicator */
+.progress-indicator {
+    
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    background: #e9ecef;
+    color: #6c757d;
+    font-weight: bold;
+    border: 3px solid white;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+    .step-circle.active {
+        background: #dc3545;
+        color: white;
+        box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
+    }
+
+.step-circle-border {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 2px solid #dc3545;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.step-circle.active .step-circle-border {
+    opacity: 1;
+}
+
+.progress-indicator::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    right: 40px;
+    height: 3px;
+    background: #e9ecef;
+    z-index: 1;
+}
+
+.step.active::before {
+    background: #dc3545;
+}
+
+.step-label {
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+/* Section Cards */
+.section-card {
+    animation: fadeIn 0.5s ease;
+}
+
+.section-title {
+    color: #2c3e50;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, #dc3545, #ff6b6b);
+    }
+
+.form-label-primary {
+    color: #495057;
+}
+
+/* Image Preview */
+.img-preview {
+    border: 3px solid #dc3545;
+    padding: 5px;
+    background: white;
+    object-fit: cover;
+}
+
+/* Appointment Alert */
+.appointment-alert {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-left: 4px solid #2196f3;
+}
+
+/* Time Slots */
+.time-slot-label {
+    display: block;
+    padding: 12px;
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+    .time-slot-label:hover {
+        border-color: #dc3545;
+        background: #fff5f5;
+    }
+
+.form-check-input:checked + .time-slot-label {
+    background: linear-gradient(135deg, #dc3545 0%, #ff6b6b 100%);
+    color: white;
+    border-color: #dc3545;
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+}
+
+/* Password Toggle */
+.password-toggle {
+    border: 1px solid #ced4da;
+    border-left: none;
+}
+
+    .password-toggle:hover {
+        background: #f8f9fa;
+        border-color: #ced4da;
+    }
+
+/* Terms Link */
+.terms-link {
+    color: #dc3545;
+    text-decoration: none;
+    border-bottom: 1px dashed #dc3545;
+    transition: all 0.3s ease;
+}
+
+    .terms-link:hover {
+        color: #9c1425;
+        border-bottom-style: solid;
+    }
+
+/* Submit Button */
+.submit-btn {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+    }
+
+    .submit-btn::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -60%;
+        width: 20px;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: rotate(30deg);
+        transition: all 0.8s ease;
+    }
+
+    .submit-btn:hover::after {
+        left: 120%;
+    }
+
+/* Login Link */
+.login-link {
+    color: #6c757d;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+    .login-link:hover {
+        color: #dc3545;
+        background: #fff5f5;
+    }
+
+/* Benefits Card */
+.benefits-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-left: 4px solid #dc3545;
+}
+
+.benefits-title {
+    color: #2c3e50;
+    position: relative;
+    display: inline-block;
+}
+
+    .benefits-title::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 2px;
+        background: #dc3545;
+    }
+
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    background: #fff5f5;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+    .benefit-icon:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 15px rgba(220, 53, 69, 0.2);
+    }
+
+.benefit-text {
+    color: #495057;
+    font-size: 0.9rem;
+}
+
+/* Form Validation Styles */
+.is-invalid {
+    border-color: #dc3545 !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+    .is-invalid:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+    }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .registration-card {
+        margin: 0 -15px;
+        border-radius: 0;
+    }
+
+    .step-label {
+        font-size: 0.7rem;
+    }
+
+    .time-slot-label {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

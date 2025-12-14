@@ -1,0 +1,106 @@
+﻿/* src/components/HospitalRegistration.css */
+
+.hospital-registration-page {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+}
+
+.hospital-registration-page .card {
+    border-radius: 15px;
+}
+
+.hospital-registration-page .form-control,
+.hospital-registration-page .form-select {
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.hospital-registration-page .form-control:focus,
+.hospital-registration-page .form-select:focus {
+    border-color: #0d3b64;
+    box-shadow: 0 0 0 0.2rem rgba(13, 59, 100, 0.25);
+}
+
+.hospital-registration-page .form-control-lg {
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+}
+
+.hospital-registration-page .btn-primary {
+    background: linear-gradient(135deg, #0d3b64, #355677);
+    border: none;
+    border-radius: 10px;
+}
+
+.hospital-registration-page .btn-primary:hover {
+    background: linear-gradient(135deg, #355677, #0d3b64);
+    transform: translateY(-2px);
+}
+
+.hospital-registration-page .form-check-input:checked {
+    background-color: #0d3b64;
+    border-color: #0d3b64;
+}
+
+.hospital-registration-page .form-switch .form-check-input {
+    width: 3em;
+    height: 1.5em;
+}
+
+.hospital-registration-page .alert-info {
+    background-color: #e8f4f8;
+    border-color: #b8ccd0;
+    color: #355677;
+}
+
+.hospital-registration-page .alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffeaa7;
+    color: #856404;
+}
+
+.hospital-registration-page .text-danger {
+    font-weight: bold;
+}
+
+.hospital-registration-page .map-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.hospital-registration-page .map-container .leaflet-container {
+    border-radius: 8px;
+}
+
+.hospital-registration-page .input-group .form-control[readonly] {
+    background-color: #f8f9fa;
+    opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hospital-registration-page .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .hospital-registration-page .card-body {
+        padding: 2rem 1.5rem;
+    }
+    
+    .hospital-registration-page .map-container {
+        height: 300px !important;
+    }
+}
+
+/* Loading spinner styles */
+.hospital-registration-page .spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Custom marker styles */
+.hospital-registration-page .leaflet-marker-icon {
+    filter: hue-rotate(200deg) saturate(1.2);
+}

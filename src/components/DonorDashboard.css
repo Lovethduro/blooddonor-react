@@ -1,0 +1,226 @@
+/* Donor Dashboard Styles */
+.donor-dashboard {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.donor-dashboard .card {
+    border-radius: 20px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.donor-dashboard .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.donor-dashboard .table {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.donor-dashboard .table thead th {
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    color: #0d3b64;
+    padding: 1rem 0.75rem;
+}
+
+.donor-dashboard .table tbody tr {
+    transition: background-color 0.2s;
+}
+
+.donor-dashboard .table tbody tr:hover {
+    background-color: rgba(13, 59, 100, 0.05);
+}
+
+.donor-dashboard .table td {
+    padding: 1rem 0.75rem;
+    vertical-align: middle;
+}
+
+.donor-dashboard .badge {
+    font-weight: 500;
+    padding: 0.5em 0.8em;
+    font-size: 0.85rem;
+}
+
+.donor-dashboard .badge.bg-primary {
+    background-color: #0d6efd !important;
+}
+
+.donor-dashboard .badge.bg-success {
+    background-color: #198754 !important;
+}
+
+.donor-dashboard .badge.bg-info {
+    background-color: #0dcaf0 !important;
+}
+
+.donor-dashboard .badge.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+.donor-dashboard .badge.bg-secondary {
+    background-color: #6c757d !important;
+}
+
+.donor-dashboard .text-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.donor-dashboard .bg-primary.bg-opacity-10 {
+    background-color: rgba(13, 110, 253, 0.1) !important;
+}
+
+.donor-dashboard .text-primary {
+    color: #0d6efd !important;
+}
+
+/* Notification Styles */
+.donor-dashboard .notification-item {
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s;
+}
+
+.donor-dashboard .notification-item:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+.donor-dashboard .notification-item:last-child {
+    border-bottom: none;
+}
+
+.donor-dashboard .notification-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.donor-dashboard .notification-icon.appointment {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+}
+
+.donor-dashboard .notification-icon.emergency {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+.donor-dashboard .notification-icon.general {
+    background-color: rgba(25, 135, 84, 0.1);
+    color: #198754;
+}
+
+/* Empty States */
+.donor-dashboard .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6c757d;
+}
+
+.donor-dashboard .empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .donor-dashboard .card-body {
+        padding: 1rem;
+    }
+
+    .donor-dashboard .table-responsive {
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .donor-dashboard .table th,
+    .donor-dashboard .table td {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.875rem;
+    }
+
+    .donor-dashboard .badge {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .donor-dashboard .notification-item {
+        padding: 1rem;
+    }
+
+    .donor-dashboard .notification-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .donor-dashboard .hero-section .display-5 {
+        font-size: 2rem !important;
+    }
+
+    .donor-dashboard .hero-section .lead {
+        font-size: 1rem !important;
+    }
+
+    .donor-dashboard .card-header h4 {
+        font-size: 1.1rem;
+    }
+
+    .donor-dashboard .table th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.25rem;
+    }
+}
+
+/* Animation for loading states */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.donor-dashboard .card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Status specific colors */
+.status-scheduled {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.status-confirmed {
+    background-color: #198754;
+    color: white;
+}
+
+.status-completed {
+    background-color: #0dcaf0;
+    color: white;
+}
+
+.status-cancelled {
+    background-color: #dc3545;
+    color: white;
+}

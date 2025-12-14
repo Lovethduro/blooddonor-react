@@ -1,0 +1,114 @@
+﻿/* src/components/About.css */
+.about-page {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Hero Section */
+.about-hero {
+    background: linear-gradient(135deg, #0d3b64 0%, #355677 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-item {
+    padding: 1rem;
+}
+
+    .stat-item h3 {
+        font-size: 2.5rem;
+    }
+
+/* Mission Section */
+.mission-content h2 {
+    color: #0d3b64;
+}
+
+.mission-points i {
+    min-width: 24px;
+}
+
+.image-placeholder {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px dashed #dee2e6;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mission-icon {
+    font-size: 8rem;
+}
+
+.privacy-icon {
+    font-size: 8rem;
+}
+
+/* Process Cards */
+.process-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+    .process-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+    }
+
+    .process-card h5 {
+        color: #0d3b64;
+    }
+
+.icon-circle {
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    width: 80px;
+    height: 80px;
+}
+
+.process-card:hover .icon-circle {
+    transform: scale(1.1);
+}
+
+.process-step-1 {
+    background: linear-gradient(135deg, #0d3b64, #355677);
+}
+
+.process-step-2 {
+    background: linear-gradient(135deg, #355677, #5a7a9a);
+}
+
+.process-step-3 {
+    background: linear-gradient(135deg, #5a7a9a, #b8ccd0);
+}
+
+/* Security Features */
+.feature-icon {
+    min-width: 40px;
+    text-align: center;
+}
+
+.security-features h5 {
+    color: #355677;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-hero .display-4 {
+        font-size: 2rem;
+    }
+
+    .stat-item h3 {
+        font-size: 2rem;
+    }
+
+    .mission-icon,
+    .privacy-icon {
+        font-size: 5rem;
+    }
+
+    .image-placeholder {
+        min-height: 300px;
+        padding: 2rem !important;
+    }
+}

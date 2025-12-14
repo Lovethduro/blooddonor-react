@@ -1,0 +1,228 @@
+﻿/* src/components/Login.css */
+
+.login-page {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+}
+
+.login-hero-section {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+    .login-hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0; 
+    }
+
+.login-card {
+    border-radius: 20px;
+    border: none;
+    animation: slideUp 0.5s ease;
+}
+
+.login-card-header {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+    .login-card-header::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        right: 0;
+        height: 20px;
+        background: white;
+        border-radius: 50% 50% 0 0;
+    }
+
+/* Emergency Alert */
+.emergency-alert {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+}
+
+/* Form Labels */
+.form-label-primary {
+    color: #495057;
+    font-size: 0.95rem;
+}
+
+/* Password Toggle */
+.password-toggle {
+    border: 1px solid #ced4da;
+    border-left: none;
+    transition: all 0.3s ease;
+}
+
+    .password-toggle:hover {
+        background: #f8f9fa;
+        color: #dc3545;
+    }
+
+/* Forgot Password Button */
+.forgot-password-btn {
+    color: #6c757d;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+    .forgot-password-btn:hover {
+        color: #dc3545;
+        text-decoration: underline !important;
+    }
+
+/* Login Button */
+.login-btn {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    border: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+    .login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(44, 62, 80, 0.3);
+    }
+
+    .login-btn:disabled {
+        background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    }
+
+/* Divider */
+.divider-with-text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+    .divider-with-text::before,
+    .divider-with-text::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .divider-with-text span {
+        padding: 0 15px;
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+
+/* Social Login Buttons */
+.social-login-btn {
+    border-width: 2px;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+    .social-login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+/* Registration Link */
+.registration-link {
+    border-width: 2px;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+    .registration-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+        background: #dc3545;
+        color: white;
+    }
+
+/* Quick Stats */
+.quick-stats-card {
+    border-left: 4px solid #2c3e50;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+/* Security Notice */
+.security-notice-card {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border: 1px solid #28a745;
+}
+
+/* Form Validation */
+.is-invalid {
+    border-color: #dc3545 !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+    .is-invalid:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+    }
+
+/* Animations */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .login-card {
+        margin: 0 -15px;
+        border-radius: 0;
+    }
+
+    .social-login-btn {
+        margin-bottom: 10px;
+    }
+
+    .stat-value {
+        font-size: 1.2rem;
+    }
+}
