@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DonorNavbar from './DonorNavbar';
+import { getDefaultAvatarSVG } from './DefaultAvatars';
 import './DonorProfile.css';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5004/api';
@@ -479,13 +480,17 @@ const DonorProfile = () => {
                                 <div className="text-center mb-4">
                                     <div className="position-relative d-inline-block">
                                         <img
-                                            src={imagePreview || (profile.profilePicture ? `${API_BASE_URL.replace('/api', '')}${profile.profilePicture}` : '/Images/default-avatar.png')}
+                                            src={imagePreview || ((profile.profilePicture && profile.profilePicture.trim() !== '') 
+                                                ? `${API_BASE_URL.replace('/api', '')}${profile.profilePicture}` 
+                                                : getDefaultAvatarSVG('donor'))}
                                             alt="Donor Profile"
                                             className="rounded-circle border border-3 border-primary"
                                             style={{ width: '120px', height: '120px', objectFit: 'cover' }}
                                             onError={(e) => {
-                                                e.target.src = '/Images/default-avatar.png';
-                                                e.target.onError = null;
+                                                const defaultSrc = getDefaultAvatarSVG('donor');
+                                                if (e.target.src !== defaultSrc) {
+                                                    e.target.src = defaultSrc;
+                                                }
                                             }}
                                         />
                                         <button

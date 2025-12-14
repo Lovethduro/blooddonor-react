@@ -84,7 +84,7 @@ const Header = () => {
                                 <li>
                                     <Link
                                         className="dropdown-item"
-                                        to="/register"
+                                        to="/donor-register"
                                         onClick={handleDropdownClick}
                                     >
                                         <i className="fas fa-user me-2 text-danger"></i>As Donor

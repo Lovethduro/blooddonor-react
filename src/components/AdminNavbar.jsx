@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { getDefaultAvatarSVG } from './DefaultAvatars';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5004/api';
 
@@ -79,13 +80,17 @@ const AdminNavbar = () => {
                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     {/* Profile Picture */}
                                     <div className="position-relative">
-                                        <img src={userData?.profilePicture ? `${API_BASE_URL.replace('/api', '')}${userData.profilePicture}` : '/Images/default-avatar.png'} 
+                                        <img src={(userData?.profilePicture && userData.profilePicture.trim() !== '') 
+                                                ? `${API_BASE_URL.replace('/api', '')}${userData.profilePicture}` 
+                                                : getDefaultAvatarSVG('admin')} 
                                              className="rounded-circle border border-2 border-primary"
                                              style={{width: '36px', height: '36px', objectFit: 'cover'}}
                                              alt="Admin Profile" 
                                              onError={(e) => {
-                                                 e.target.src = '/Images/default-avatar.png';
-                                                 e.target.onError = null;
+                                                 const defaultSrc = getDefaultAvatarSVG('admin');
+                                                 if (e.target.src !== defaultSrc) {
+                                                     e.target.src = defaultSrc;
+                                                 }
                                              }} />
                                     </div>
                                     <span className="ms-2 fw-medium d-none d-md-inline">

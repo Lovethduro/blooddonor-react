@@ -80,16 +80,32 @@ const DonorNavbar = () => {
                             >
                                 {/* Profile Picture Container */}
                                 <div className="me-2">
-                                    {userData?.profilePicture ? (
+                                    {(userData?.profilePicture && userData.profilePicture.trim() !== '') ? (
                                         <img
                                             src={`${API_BASE_URL.replace('/api', '')}${userData.profilePicture}`}
                                             className="rounded-circle border border-2 border-primary"
                                             style={{width: '36px', height: '36px', objectFit: 'cover'}}
                                             alt="Profile Picture"
+                                            onError={(e) => {
+                                                // Hide image and show initials div
+                                                e.target.style.display = 'none';
+                                                const parent = e.target.parentNode;
+                                                let initialsDiv = parent.querySelector('.donor-initials-avatar');
+                                                if (!initialsDiv) {
+                                                    initialsDiv = document.createElement('div');
+                                                    initialsDiv.className = 'donor-initials-avatar rounded-circle border border-2 border-primary d-flex align-items-center justify-content-center';
+                                                    initialsDiv.style.cssText = 'width: 36px; height: 36px; background: linear-gradient(135deg, #0d3b64, #1e5799); color: white; font-weight: 600; font-size: 1rem;';
+                                                    initialsDiv.textContent = getUserInitial(userData?.name);
+                                                    parent.appendChild(initialsDiv);
+                                                } else {
+                                                    initialsDiv.style.display = 'flex';
+                                                }
+                                            }}
                                         />
-                                    ) : (
+                                    ) : null}
+                                    {(!userData?.profilePicture || !userData.profilePicture.trim()) && (
                                         <div
-                                            className="rounded-circle border border-2 border-primary d-flex align-items-center justify-content-center"
+                                            className="rounded-circle border border-2 border-primary d-flex align-items-center justify-content-center donor-initials-avatar"
                                             style={{
                                                 width: '36px',
                                                 height: '36px',

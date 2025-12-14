@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import AdminNavbar from './AdminNavbar';
+import { getDefaultAvatarSVG } from './DefaultAvatars';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5004/api';
 
@@ -336,13 +337,17 @@ const AdminProfile = () => {
                                 <div className="text-center mb-4">
                                     <div className="position-relative d-inline-block">
                                         <img 
-                                            src={imagePreview || (profile.profilePicture ? `${API_BASE_URL.replace('/api', '')}${profile.profilePicture}` : '/Images/default-avatar.png')} 
+                                            src={imagePreview || ((profile.profilePicture && profile.profilePicture.trim() !== '') 
+                                                ? `${API_BASE_URL.replace('/api', '')}${profile.profilePicture}` 
+                                                : getDefaultAvatarSVG('admin'))} 
                                             alt="Profile" 
                                             className="rounded-circle border border-3 border-primary"
                                             style={{width: '120px', height: '120px', objectFit: 'cover'}}
                                             onError={(e) => {
-                                                e.target.src = '/Images/default-avatar.png';
-                                                e.target.onError = null;
+                                                const defaultSrc = getDefaultAvatarSVG('admin');
+                                                if (e.target.src !== defaultSrc) {
+                                                    e.target.src = defaultSrc;
+                                                }
                                             }}
                                         />
                                         

@@ -198,12 +198,17 @@ const HospitalRegistration = () => {
             {
                 url: 'https://ipapi.co/json/',
                 parse: (data) => data.latitude && data.longitude ?
-                    { latitude: data.latitude, longitude: data.longitude } : null
+                    { latitude: parseFloat(data.latitude), longitude: parseFloat(data.longitude) } : null
             },
             {
-                url: 'https://freegeoip.app/json/',
+                url: 'https://ip-api.com/json/?fields=status,message,lat,lon',
+                parse: (data) => data.status === 'success' && data.lat && data.lon ?
+                    { latitude: parseFloat(data.lat), longitude: parseFloat(data.lon) } : null
+            },
+            {
+                url: 'https://api.ipgeolocation.io/ipgeo?apiKey=free',
                 parse: (data) => data.latitude && data.longitude ?
-                    { latitude: data.latitude, longitude: data.longitude } : null
+                    { latitude: parseFloat(data.latitude), longitude: parseFloat(data.longitude) } : null
             }
         ];
 
@@ -248,38 +253,75 @@ const HospitalRegistration = () => {
         setSuccessMessage('Detecting your location... This may take up to 30 seconds.');
 
         try {
+            // Check if geolocation is supported
+            if (!navigator.geolocation) {
+                throw new Error('Geolocation is not supported by your browser');
+            }
+
             // Try GPS first (most accurate)
             console.log('Attempting GPS location...');
-            const gpsPosition = await getGPSLocation();
-
-            if (gpsPosition && gpsPosition.coords) {
-                const { latitude, longitude, accuracy } = gpsPosition.coords;
-                console.log('GPS success:', latitude, longitude, '±' + Math.round(accuracy) + 'm');
-
-                setFormData(prev => ({
-                    ...prev,
-                    latitude,
-                    longitude
-                }));
-
-                await reverseGeocode(latitude, longitude);
-
-                setLocationFetched(true);
-                setLocationMethod('gps');
-                setSuccessMessage(`✅ Precise location found! Accuracy: ±${Math.round(accuracy)} meters`);
-                setTimeout(() => setSuccessMessage(''), 5000);
-            }
-        } catch (gpsError) {
-            console.warn('GPS failed:', gpsError.message);
-
+            
             try {
-                // Fallback to IP-based location
+                const gpsPosition = await getGPSLocation();
+
+                if (gpsPosition && gpsPosition.coords) {
+                    const { latitude, longitude, accuracy } = gpsPosition.coords;
+                    
+                    // Validate coordinates
+                    if (isNaN(latitude) || isNaN(longitude) || latitude === 0 || longitude === 0) {
+                        throw new Error('Invalid GPS coordinates received');
+                    }
+                    
+                    console.log('GPS success:', latitude, longitude, '±' + Math.round(accuracy) + 'm');
+
+                    setFormData(prev => ({
+                        ...prev,
+                        latitude,
+                        longitude
+                    }));
+
+                    await reverseGeocode(latitude, longitude);
+
+                    setLocationFetched(true);
+                    setLocationMethod('gps');
+                    setSuccessMessage(`✅ Precise location found! Accuracy: ±${Math.round(accuracy)} meters`);
+                    setTimeout(() => setSuccessMessage(''), 5000);
+                    setLocationLoading(false);
+                    return;
+                }
+            } catch (gpsError) {
+                console.warn('GPS failed:', gpsError.message);
+                
+                // Check specific error types
+                if (gpsError.code === 1) { // PERMISSION_DENIED
+                    setErrorMessage('Location permission denied. Please allow location access in your browser settings and try again.');
+                } else if (gpsError.code === 2) { // POSITION_UNAVAILABLE
+                    console.log('GPS position unavailable, trying IP-based location...');
+                } else if (gpsError.code === 3) { // TIMEOUT
+                    console.log('GPS request timed out, trying IP-based location...');
+                }
+                
+                // Continue to IP fallback unless it's a permission error
+                if (gpsError.code === 1) {
+                    setLocationLoading(false);
+                    return;
+                }
+            }
+
+            // Fallback to IP-based location
+            try {
                 console.log('Trying IP-based location...');
                 setSuccessMessage('GPS unavailable, trying IP-based location...');
 
                 const ipLocation = await getIPLocation();
-                if (ipLocation) {
+                if (ipLocation && ipLocation.latitude && ipLocation.longitude) {
                     const { latitude, longitude } = ipLocation;
+                    
+                    // Validate coordinates
+                    if (isNaN(latitude) || isNaN(longitude) || latitude === 0 || longitude === 0) {
+                        throw new Error('Invalid IP location coordinates received');
+                    }
+                    
                     console.log('IP location success:', latitude, longitude);
 
                     setFormData(prev => ({
@@ -294,14 +336,21 @@ const HospitalRegistration = () => {
                     setLocationMethod('ip');
                     setSuccessMessage('📍 Location found using IP address (approximate city-level accuracy)');
                     setTimeout(() => setSuccessMessage(''), 5000);
+                    setLocationLoading(false);
+                    return;
                 }
             } catch (ipError) {
                 console.error('IP location failed:', ipError);
                 setErrorMessage(
-                    'Unable to detect your location. Please ensure location permissions are enabled in your browser and try again. ' +
-                    'For best results, use a modern browser like Chrome or Firefox.'
+                    'Unable to detect your location automatically. Please manually enter your address and city in the form below. ' +
+                    'If you continue to have issues, ensure location permissions are enabled in your browser settings.'
                 );
             }
+        } catch (error) {
+            console.error('Location detection error:', error);
+            setErrorMessage(
+                error.message || 'Unable to detect your location. Please manually enter your address and city.'
+            );
         } finally {
             setLocationLoading(false);
         }
@@ -611,54 +660,58 @@ const HospitalRegistration = () => {
                                         </div>
                                     </div>
 
-                                    {/* Auto-filled Address Fields */}
-                                    <div className="row">
-                                        <div className="col-md-12 mb-3">
-                                            <label className="form-label fw-bold">
-                                                Address <span className="text-danger">*</span>
-                                            </label>
-                                            <div className="input-group">
-                                                <span className="input-group-text bg-light border-end-0 align-items-start pt-3">
-                                                    <i className="fas fa-map-marker-alt text-muted"></i>
-                                                </span>
-                                                <textarea
-                                                    name="address"
-                                                    className={`form-control border-start-0 ${errors.address ? 'is-invalid' : ''}`}
-                                                    placeholder="Address will be auto-detected from your location"
-                                                    rows="2"
-                                                    value={formData.address}
-                                                    readOnly
-                                                />
+                                    {/* Auto-filled Address Fields - Only show after location is detected */}
+                                    {locationFetched && (
+                                        <>
+                                            <div className="row">
+                                                <div className="col-md-12 mb-3">
+                                                    <label className="form-label fw-bold">
+                                                        Address <span className="text-danger">*</span>
+                                                    </label>
+                                                    <div className="input-group">
+                                                        <span className="input-group-text bg-light border-end-0 align-items-start pt-3">
+                                                            <i className="fas fa-map-marker-alt text-muted"></i>
+                                                        </span>
+                                                        <textarea
+                                                            name="address"
+                                                            className={`form-control border-start-0 ${errors.address ? 'is-invalid' : ''}`}
+                                                            placeholder="Address will be auto-detected from your location"
+                                                            rows="2"
+                                                            value={formData.address}
+                                                            readOnly
+                                                        />
+                                                    </div>
+                                                    {errors.address && (
+                                                        <div className="text-danger small mt-1">{errors.address}</div>
+                                                    )}
+                                                </div>
                                             </div>
-                                            {errors.address && (
-                                                <div className="text-danger small mt-1">{errors.address}</div>
-                                            )}
-                                        </div>
-                                    </div>
 
-                                    <div className="row">
-                                        <div className="col-md-12 mb-3">
-                                            <label className="form-label fw-bold">
-                                                City <span className="text-danger">*</span>
-                                            </label>
-                                            <div className="input-group">
-                                                <span className="input-group-text bg-light border-end-0">
-                                                    <i className="fas fa-city text-muted"></i>
-                                                </span>
-                                                <input
-                                                    type="text"
-                                                    name="city"
-                                                    className={`form-control border-start-0 ${errors.city ? 'is-invalid' : ''}`}
-                                                    placeholder="Auto-detected from location"
-                                                    value={formData.city}
-                                                    readOnly
-                                                />
+                                            <div className="row">
+                                                <div className="col-md-12 mb-3">
+                                                    <label className="form-label fw-bold">
+                                                        City <span className="text-danger">*</span>
+                                                    </label>
+                                                    <div className="input-group">
+                                                        <span className="input-group-text bg-light border-end-0">
+                                                            <i className="fas fa-city text-muted"></i>
+                                                        </span>
+                                                        <input
+                                                            type="text"
+                                                            name="city"
+                                                            className={`form-control border-start-0 ${errors.city ? 'is-invalid' : ''}`}
+                                                            placeholder="Auto-detected from location"
+                                                            value={formData.city}
+                                                            readOnly
+                                                        />
+                                                    </div>
+                                                    {errors.city && (
+                                                        <div className="text-danger small mt-1">{errors.city}</div>
+                                                    )}
+                                                </div>
                                             </div>
-                                            {errors.city && (
-                                                <div className="text-danger small mt-1">{errors.city}</div>
-                                            )}
-                                        </div>
-                                    </div>
+                                        </>
+                                    )}
 
                                     {/* Contact Information */}
                                     <div className="row">

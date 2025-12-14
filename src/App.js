@@ -55,15 +55,6 @@ function App() {
                         <>
                             <Header />
                             <main className="main-content">
-                                <Registration />
-                            </main>
-                            <Footer />
-                        </>
-                    } />
-                    <Route path="/hospital-register" element={
-                        <>
-                            <Header />
-                            <main className="main-content">
                                 <HospitalRegistration />
                             </main>
                             <Footer />
